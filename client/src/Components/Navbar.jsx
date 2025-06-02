@@ -3,6 +3,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaPlusCircle, FaChartBar } from 'react-icons/fa';
 
+
 const Navbar = () => {
   const location = useLocation();
 
