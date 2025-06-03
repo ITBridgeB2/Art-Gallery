@@ -162,7 +162,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const ArtList = () => {
   const [artworks, setArtworks] = useState([]);
@@ -182,24 +182,53 @@ const ArtList = () => {
       });
   }, []);
 
-  if (loading) return <div className="p-4">Loading...</div>;
+  if (loading) return <div className="p-6 text-center text-purple-600 text-lg">Loading...</div>;
 
   return (
-    <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {artworks.length === 0 ? (
-        <p>No artworks found.</p>
+        <p className="text-purple-600 text-center col-span-full">No artworks found.</p>
       ) : (
         artworks.map((art) => (
           <Link to={`/artworks/${art.id}`} key={art.id}>
-            <div className="border rounded-lg shadow p-4 hover:shadow-md transition">
-              <img
+            <div className="bg-white border border-purple-300 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 hover:bg-purple-50">
+
+
+
+{/* ------------------ */}
+
+
+              {/* <img
                 src={`http://localhost:5000${art.image_url}` || "https://via.placeholder.com/300x200"}
                 alt={art.title}
-                className="w-full h-48 object-cover rounded mb-2"
-              />
-              <h2 className="text-xl font-semibold">{art.title}</h2>
-              <p className="text-sm text-gray-600">by {art.artist}</p>
-              <p className="text-sm italic">{art.genre}</p>
+                className="w-full h-48 object-cover rounded-t-lg"
+              /> */}
+
+                {/* <img
+
+  src={`http://localhost:5000${art.image_url}` || "https://via.placeholder.com/320x250"}
+  alt={art.title}
+  className="w-full h-48 object-cover rounded-md overflow-hidden"
+/>
+ */}
+
+ {/* ------------------ */}
+ 
+
+<div className="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
+  <img
+    src={`http://localhost:5000${art.image_url}` || "https://via.placeholder.com/300x200"}
+    alt={art.title}
+    className="max-h-full max-w-full object-contain"
+  />
+</div>
+
+
+              <div className="p-4">
+                <h2 className="text-xl font-bold text-purple-700 mb-1">{art.title}</h2>
+                <p className="text-sm text-gray-700 mb-1">by <span className="font-medium">{art.artist}</span></p>
+                <p className="text-sm italic text-purple-600">{art.genre}</p>
+              </div>
             </div>
           </Link>
         ))
