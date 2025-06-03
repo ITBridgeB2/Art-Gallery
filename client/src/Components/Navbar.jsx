@@ -1,10 +1,8 @@
-// src/components/UI/Navbar.jsx
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaPlusCircle, FaChartBar } from 'react-icons/fa';
 
-
-const Navbar = () => {
+const Navbar = ({ onAddArtClick }) => {
   const location = useLocation();
 
   const navLinkStyle = (path) =>
@@ -28,10 +26,16 @@ const Navbar = () => {
             <Link to="/" className={navLinkStyle('/')}>
               Home
             </Link>
-            <Link to="/add" className={`${navLinkStyle('/add')} flex items-center gap-1`}>
+
+            {/* Changed Add Art to a button */}
+            <button
+              onClick={onAddArtClick}
+              className="transition px-3 py-2 rounded-md text-sm font-medium text-white flex items-center gap-1 hover:bg-purple-500"
+            >
               <FaPlusCircle className="text-sm" />
               <span>Add Art</span>
-            </Link>
+            </button>
+
             <Link to="/dashboard" className={`${navLinkStyle('/dashboard')} flex items-center gap-1`}>
               <FaChartBar className="text-sm" />
               <span>Analytics</span>
